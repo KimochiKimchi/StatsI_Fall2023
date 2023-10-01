@@ -145,6 +145,8 @@ text(380,450,sprintf("Correlation=%s", round(cor(expenditure$X3,expenditure$X2),
 
 
 ##Part2
+##I make a boxplot to plot the relationship between Y and Region
+##This code is from Tutorial 2 
 boxplot(expenditure$Y ~ expenditure$Region,
         main="Boxplot of per capita expenditure on shelters 
         by region",
@@ -175,7 +177,7 @@ Group_means
 ##and by using the ?scatterplot instruction to learn about the customizations possible
 ##Using this, I made the graph look more legible and clean
 ## This forum also helped: https://stackoverflow.com/questions/52876568/how-to-use-legend-argument-in-scatterplot-using-car-package-version-3
-
+##I make a scatterplot with Y and X1 and use different colors and shapes to specify the region
 library(car)
 ?scatterplot
 scatterplot(expenditure$X1 ~ expenditure$Y| 
