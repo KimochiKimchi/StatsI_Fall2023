@@ -1,4 +1,6 @@
 #####################
+##Name: Aryan Goyal
+## Student number:18306046
 # load libraries
 # set wd
 # clear global .envir
