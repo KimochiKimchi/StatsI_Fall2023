@@ -43,7 +43,7 @@ ChiSquareStatistic <- (((14-13.5)^2)/13.5) + (((6-8.36)^2)/8.36) + (((7-5.14)^2)
 pvalue <- pchisq(3.80,df=2, lower.tail=FALSE)
 ##P-value = 0.15. This value is not significant at the alpha level=0.05
 ## Hence, we cannot reject our null hypothesis
-##Add better conclusion
+##Complete interpretation in PDF
 
 ##We can double check our "by hand" chi square test using the chisq.test function in R
 chisq.test(PolSci)
@@ -92,7 +92,7 @@ StdRes <- chi_testR$stdres ##storing the standardized residuals in an object
 stargazer(chi_testR$expected)
 stargazer(StdRes) ##Using the stargazer function, to get code for making a table in Latex
 
-##Interpretation of std residuals
+##Interpretation of std residuals in PDF
 
 ##Q2
 ##First I input the dataset for this question
@@ -113,4 +113,4 @@ reg$coefficients
 stargazer(reg)
 stargazer(confint(reg)) #In order to make a table in Latex
 
-##c) Interpret the coefficient estimate for reservation policy
+##c) Interpret the coefficient estimate for reservation policy in PDF

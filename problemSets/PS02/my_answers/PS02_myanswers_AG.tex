@@ -23,12 +23,12 @@ the expected frequency is not greater than 5 but we do the chi-square test anywa
 
 \noindent The null hypothesis is that the variables of class and police behavior are statistically independent
 
-\noindent The alternative hypothesis is that the variables of class and police behavior are statistically 
-
+\noindent The alternative hypothesis is that the variables of class and police behavior are statistically dependent
+\vspace{0.5cm}
 
 \noindent In order to calculate the chi-square test statistic "by hand" in R:
 
-I first create a table with the given information on our predictor and explanatory variable
+I first create a table with the given information on our variables:
 
 \begin{verbatim}
 Not_Stopped <- c(14,7)
@@ -95,6 +95,15 @@ ChiSquareStatistic <- (((14-13.5)^2)/13.5) + (((6-8.36)^2)/8.36) +
 
 \end{verbatim} 
 From this, I got the chi-square test statistic value = 3.8
+
+\noindent I double check our "by hand" chi square test using the chisq.test function in R: 
+\begin{verbatim}
+    chisq.test(PolSci)
+
+chi_testR <- chisq.test(PolSci) #Saving chi-square test in an object
+
+\end{verbatim}
+Through this, I get chi squared value = 3.79
 
 \subsection{Answer 1b)}
 Next, I calculate the p-value from the test statistic.
