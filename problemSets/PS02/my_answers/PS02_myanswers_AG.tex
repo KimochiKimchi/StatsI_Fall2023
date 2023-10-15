@@ -1,153 +1,273 @@
-\documentclass[12pt,letterpaper]{article}
-\usepackage{graphicx,textcomp}
-\usepackage{natbib}
-\usepackage{setspace}
-\usepackage{fullpage}
-\usepackage{color}
-\usepackage[reqno]{amsmath}
-\usepackage{amsthm}
-\usepackage{fancyvrb}
-\usepackage{amssymb,enumerate}
-\usepackage[all]{xy}
-\usepackage{endnotes}
-\usepackage{lscape}
-\newtheorem{com}{Comment}
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[export]{adjustbox}% Required for inserting images
 \usepackage{float}
-\usepackage{hyperref}
-\newtheorem{lem} {Lemma}
-\newtheorem{prop}{Proposition}
-\newtheorem{thm}{Theorem}
-\newtheorem{defn}{Definition}
-\newtheorem{cor}{Corollary}
-\newtheorem{obs}{Observation}
-\usepackage[compact]{titlesec}
-\usepackage{dcolumn}
-\usepackage{tikz}
-\usetikzlibrary{arrows}
-\usepackage{multirow}
-\usepackage{xcolor}
-\newcolumntype{.}{D{.}{.}{-1}}
-\newcolumntype{d}[1]{D{.}{.}{#1}}
-\definecolor{light-gray}{gray}{0.65}
-\usepackage{url}
-\usepackage{listings}
-\usepackage{color}
-
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-\lstdefinestyle{mystyle}{
-	backgroundcolor=\color{backcolour},   
-	commentstyle=\color{codegreen},
-	keywordstyle=\color{magenta},
-	numberstyle=\tiny\color{codegray},
-	stringstyle=\color{codepurple},
-	basicstyle=\footnotesize,
-	breakatwhitespace=false,         
-	breaklines=true,                 
-	captionpos=b,                    
-	keepspaces=true,                 
-	numbers=left,                    
-	numbersep=5pt,                  
-	showspaces=false,                
-	showstringspaces=false,
-	showtabs=false,                  
-	tabsize=2
-}
-\lstset{style=mystyle}
-\newcommand{\Sref}[1]{Section~\ref{#1}}
-\newtheorem{hyp}{Hypothesis}
-
-\title{Problem Set 2}
-\date{Due: October 15, 2023}
-\author{Applied Stats/Quant Methods 1}
+\usepackage{placeins}
+\title{PS02_myanswers_AG}
+\author{Aryan Goyal}
+\date{October 2023}
 
 \begin{document}
-	\maketitle
-	\section*{Instructions}
-\begin{itemize}
-	\item Please show your work! You may lose points by simply writing in the answer. If the problem requires you to execute commands in \texttt{R}, please include the code you used to get your answers. Please also include the \texttt{.R} file that contains your code. If you are not sure if work needs to be shown for a particular problem, please ask.
-	\item Your homework should be submitted electronically on GitHub.
-	\item This problem set is due before 23:59 on Sunday October 15, 2023. No late assignments will be accepted.
+\section{PS02 Answers}
+Aryan Goyal
 
-\end{itemize}
+\noindent Student number: 18306046
 
-	
-	\vspace{.5cm}
-	\section*{Question 1: Political Science}
-		\vspace{.25cm}
-	The following table was created using the data from a study run in a major Latin American city.\footnote{Fried, Lagunes, and Venkataramani (2010). ``Corruption and Inequality at the Crossroad: A Multimethod Study of Bribery and Discrimination in Latin America. \textit{Latin American Research Review}. 45 (1): 76-97.} As part of the experimental treatment in the study, one employee of the research team was chosen to make illegal left turns across traffic to draw the attention of the police officers on shift. Two employee drivers were upper class, two were lower class drivers, and the identity of the driver was randomly assigned per encounter. The researchers were interested in whether officers were more or less likely to solicit a bribe from drivers depending on their class (officers use phrases like, ``We can solve this the easy way'' to draw a bribe). The table below shows the resulting data.
+\section{Question 1}
+    
+\subsection{Answer 1a)}
 
-\newpage
-\begin{table}[h!]
-	\centering
-	\begin{tabular}{l | c c c }
-		& Not Stopped & Bribe requested & Stopped/given warning \\
-		\\[-1.8ex] 
-		\hline \\[-1.8ex]
-		Upper class & 14 & 6 & 7 \\
-		Lower class & 7 & 7 & 1 \\
-		\hline
-	\end{tabular}
+First,I check the assumptions that we have two categorical variables and if
+the expected frequency is greater than/equal to 5 in all cells. In this case,
+the expected frequency is not greater than 5 but we do the chi-square test anyways
+
+\noindent The null hypothesis is that the variables of class and police behavior are statistically independent
+
+\noindent The alternative hypothesis is that the variables of class and police behavior are statistically 
+
+
+\noindent In order to calculate the chi-square test statistic "by hand" in R:
+
+I first create a table with the given information on our predictor and explanatory variable
+
+\begin{verbatim}
+Not_Stopped <- c(14,7)
+Bribe_Requested <- c(6,7)
+Stopped_Given_Warning <- c(7,1)
+
+PolSci <- data.frame(
+Not_Stopped,Bribe_Requested, Stopped_Given_Warning,
+row.names = c('Upper Class','Lower class')
+)
+str(PolSci)
+\end{verbatim}
+\begin{table}[!htbp] \centering 
+  \caption{Observed values} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Not\_Stopped & Bribe\_Requested & Stopped\_Given\_Warning \\ 
+\hline \\[-1.8ex] 
+Upper Class & $14$ & $6$ & $7$ \\ 
+Lower class & $7$ & $7$ & $1$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+\noindent Next, I calculate the expected frequency for each row and column
+
+\noindent The formula to calculate expected frequencies:
+
+((Row total)*(Column Total))/Total sample size
+
+\begin{verbatim}
+(27*21)/42 # = 13.50
+(15*21)/42 # = 7.50
+(27*13)/42 # = 8.36
+(15*13)/42 # = 4.64
+(27*8)/42 # = 5.14
+(15*8)/42 # = 2.86
+
+\end{verbatim}
+\begin{table}[!htbp] \centering 
+  \caption{Expected values} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Not\_Stopped & Bribe\_Requested & Stopped\_Given\_Warning \\ 
+\hline \\[-1.8ex] 
+Upper Class & $13.500$ & $8.357$ & $5.143$ \\ 
+Lower class & $7.500$ & $4.643$ & $2.857$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
 \end{table}
 
-\begin{enumerate}
-	
-	\item [(a)]
-	Calculate the $\chi^2$ test statistic by hand/manually (even better if you can do "by hand" in \texttt{R}).\\
-	\vspace{7cm}
-	
-	\item [(b)]
-	Now calculate the p-value from the test statistic you just created (in \texttt{R}).\footnote{Remember frequency should be $>$ 5 for all cells, but let's calculate the p-value here anyway.}  What do you conclude if $\alpha = 0.1$?\\
-	
-	\newpage
-	\item [(c)] Calculate the standardized residuals for each cell and put them in the table below.
-	\vspace{1cm}
-	
-	\begin{table}[h]
-		\centering
-		\begin{tabular}{l | c c c }
-			& Not Stopped & Bribe requested & Stopped/given warning \\
-			\\[-1.8ex] 
-			\hline \\[-1.8ex]
-			Upper class  &  &  &  \\
-			\\
-			Lower class &  &   &   \\
-			
-		\end{tabular}
-	\end{table}
-	
-	
-	\vspace{7cm}
-	\item [(d)] How might the standardized residuals help you interpret the results?  
-	
-\end{enumerate}
-\newpage
+\noindent Now, I have all the required values to calculate the chi-square test statistic value.
 
-\section*{Question 2: Economics}
-Chattopadhyay and Duflo were interested in whether women promote different policies than men.\footnote{Chattopadhyay and Duflo. (2004). ``Women as Policy Makers: Evidence from a Randomized Policy Experiment in India. \textit{Econometrica}. 72 (5), 1409-1443.} Answering this question with observational data is pretty difficult due to potential confounding problems (e.g. the districts that choose female politicians are likely to systematically differ in other aspects too). Hence, they exploit a randomized policy experiment in India, where since the mid-1990s, $\frac{1}{3}$ of village council heads have been randomly reserved for women. A subset of the data from West Bengal can be found at the following link: \url{https://raw.githubusercontent.com/kosukeimai/qss/master/PREDICTION/women.csv}\\
+\begin{verbatim}
+The formula is ((observed frequency-expected frequency)^2)/expected frequency
 
-\noindent Each observation in the data set represents a village and there are two villages associated with one GP (i.e. a level of government is called "GP"). Figure~\ref{fig:women_desc} below shows the names and descriptions of the variables in the dataset. The authors hypothesize that female politicians are more likely to support policies female voters want. Researchers found that more women complain about the quality of drinking water than men. You need to estimate the effect of the reservation policy on the number of new or repaired drinking water facilities in the villages.
-\vspace{.5cm}
-\begin{figure}[h!]
-	\caption{\footnotesize{Names and description of variables from Chattopadhyay and Duflo (2004).}}
-	\vspace{.5cm}
-	\centering
-	\label{fig:women_desc}
-	\includegraphics[width=1.1\textwidth]{women_desc.png}
-\end{figure}		
+ChiSquareStatistic <- (((14-13.5)^2)/13.5) + (((6-8.36)^2)/8.36) + 
+(((7-5.14)^2)/5.14) +  (((7-7.5)^2)/7.5) + 
+(((7-4.64)^2)/4.64) + (((1-2.86)^2)/2.86)    
 
-\newpage
-\begin{enumerate}
-	\item [(a)] State a null and alternative (two-tailed) hypothesis. 
-	
-	\vspace{6cm}
-	\item [(b)] Run a bivariate regression to test this hypothesis in \texttt{R} (include your code!).
-	
-	\vspace{6cm}
-	\item [(c)] Interpret the coefficient estimate for reservation policy. 
-\end{enumerate}
+\end{verbatim} 
+From this, I got the chi-square test statistic value = 3.8
+
+\subsection{Answer 1b)}
+Next, I calculate the p-value from the test statistic.
+I use the pchisq function in R:
+\begin{verbatim}
+degrees of freedom=(rows-1)*(columns-1)
+Hence, df=(2-1)(3-1)=1*2=2    
+pvalue <- pchisq(3.80,df=2, lower.tail=FALSE)
+\end{verbatim}
+From this, I find that the p-value = 0.15
+In this case, the p-value is 0.15 and above the alpha level= 0.1 and hence, we do not have enough evidence to reject the null hypothesis that the variables of class and police behavior are statistically independent.
+
+If the p-value was below the alpha level = 0.1, we could conclude that we have enough evidence to reject the null hypothesis, and hence  have support for the alternative hypothesis that the variables of class and police behavior are statistically dependent
+
+\subsection{Answer 1c)}
+Finally, to calculate the standardized residuals for each cell:
+
+\noindent The formula for each cell is (observed frequency - expected frequency)/se, where standard error= sqrt(expected frequency(1-row proportion)(1-column proportion))
+
+First, I do this by hand:
+\begin{verbatim}
+    ##For Cell 1:
+numerator1 <- 14-13.5 #Numerator
+denominator1 <- sqrt((13.5*(1-0.64)*(1-0.5)))
+cell1 <- numerator1/denominator1
+
+##For Cell2:
+numerator2 <- 6-8.36
+denominator2 <- sqrt((8.36*(1-0.64)*(1-0.31)))
+cell2 <- numerator2/denominator2
+##For Cell3: 
+numerator3 <- 7-5.14
+denominator3 <- sqrt((5.14*(1-0.64)*(1-0.19)))
+cell3 <- numerator3/denominator3  
+##For Cell4:
+numerator4 <- 7-7.5
+denominator4 <- sqrt((7.5*(1-0.36)*(1-0.5)))
+cell4 <- numerator4/denominator4
+##For Cell5:
+numerator5 <- 7-4.64
+denominator5 <- sqrt((4.64*(1-0.36)*(1-0.31)))
+cell5 <- numerator5/denominator5
+##For Cell6:
+numerator6 <- 1-2.86
+denominator6 <- sqrt((2.86*(1-0.36)*(1-0.19)))
+cell6 <- numerator6/denominator6
+
+\end{verbatim}
+To check these values, I extract the standardized residuals that R's chisq.test function calculates:
+
+\begin{verbatim}
+    ls(chi_testR)
+##storing the standardized residuals in an object
+StdRes <- chi_testR$stdres 
+
+#Using the stargazer function, to get code for 
+making a table in Latex
+stargazer(StdRes)
+
+\end{verbatim}
+From the calculated standardized residuals, I can make this table:
+\begin{table}[!htbp] \centering 
+  \caption{Standardized Residuals} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & Not\_Stopped & Bribe\_Requested & Stopped\_Given\_Warning \\ 
+\hline \\[-1.8ex] 
+Upper Class & $0.322$ & -$1.642$ & $1.523$ \\ 
+Lower class & -$0.322$ & $1.642$ & -$1.523$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+\vspace{5cm}
+
+\subsection{Answer 1d)}
+Standardized residuals are useful to describe the pattern of association among the cells. A large standardized residual (greater than 2 in absolute value) provides evidence against independence in that cell.
+Since none of the the standardized residuals exceed 2 in absolute value, the cells do not have more observations than we would expect if the variables were truly independent. 
+
+The value for Bribe requested for upper class individuals is -1.642 which suggests that this was less what the hypothesis of independence predicts, however not enough to be statistically significant. 
+
+Similarly, for upper class individuals who were stopped/given warning, a value of 1.523 suggests that it was more than the hypothesis of independence predicts, but not enough to be statistically significant. 
+
+\pagebreak
+\section{Question 2}
+First I input the dataset for this question:
+\begin{verbatim}
+Economics <- read.csv("https://raw.githubusercontent.com/
+kosukeimai/qss/master/PREDICTION/women.csv")
+    
+\end{verbatim}
+
+\subsection{Answer 2a)}
+The null hypothesis (H0): There is no significant relationship between the  reservation policy and the number of new or repaired drinking water facilities in the village.
+
+\noindent The alternative hypothesis (Ha): There is a significant relationship between the  reservation policy and the number of new or repaired drinking water facilities in the village.
+
+%%begin{figure} %%Code to put figures in the pdf
+    %centering
+    %includegraphics[width=1.3\textwidth]{%%This is where I put the .png file}
+    %caption{Y and X1}
+    %label{fig:enter-label}
+%end{figure}
+%%Replace the "%" with \ to use
+
+\subsection{Answer 2b)}
+I conduct a bivariate regression in R using the "lm" function:
+\begin{verbatim}
+reg <- lm(Economics$water ~ Economics$reserved, Economics)
+reg
+summary(reg)
+
+\end{verbatim}
+This is the table showing the results
+\begin{table}[!htbp] \centering 
+  \caption{Bivariate Regression} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] & water \\ 
+\hline \\[-1.8ex]  
+ Constant & 14.738$^{***}$ \\ 
+  & (2.286) \\ 
+  & \\ 
+  reserved & 9.252$^{**}$ \\ 
+  & (3.948) \\ 
+  & \\
+\hline \\[-1.8ex] 
+Observations & 322 \\ 
+R$^{2}$ & 0.017 \\ 
+Adjusted R$^{2}$ & 0.014 \\ 
+Residual Std. Error & 33.446 (df = 320) \\ 
+F Statistic & 5.493$^{**}$ (df = 1; 320) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
+
+\begin{verbatim}
+# using the confint function to get confidence intervals 
+for our estimates
+confint(reg) 
+
+\end{verbatim}
+\begin{table}[!htbp] \centering 
+  \caption{Confidence intervals of y-intercept and slope} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & 2.5 \% & 97.5 \% \\ 
+\hline \\[-1.8ex] 
+(Intercept) & $10.240$ & $19.236$ \\ 
+reserved & $1.486$ & $17.019$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+\subsection{Answer 2c)}
+Finally, I interpret the coefficient estimate for reservation policy:
+\vspace{0.5cm}
+
+\noindent The value of the slope suggests that villages with a female representative have 9.25 more new/repaired drinking water facilities on average with a 95 percent confidence interval of [1.49, 17.02]. The confidence interval suggests that with a female representative, the number of new/drinking water facilities increases by as few as 1.49 or as many as 17.02. 
+At alpha level = 0.05, we can reject the null hypothesis and conclude that the slope is statistically differentiable from 0. 
+\vspace{0.5cm}
+
+\noindent In addition, the y-intercept suggests that having a non-female representative means that the number of drinking water facilities are 14.738 in the village with a 95 percent confidence interval of [10.240, 19.236]. At alpha level = 0.01, we can reject the null hypothesis that the y-intercept = 0.
+
 
 \end{document}
