@@ -206,9 +206,10 @@ df_s
 # Get the mean income and max child mortality for each year
 df_grouped <- group_by(df, date) # Group by year
 df_mean_inc <- summarize(df_grouped, 
-                         n=n(), # Counts
+                         n=n(), # calculates the number of cases
                          mean_inc=mean(gdp_per_cap), # Mean
                          max_mort=max(mort)) # Max
+## On the left we have the name we gave to variable, and then on the right the function
 df_mean_inc
 
 # What about missing values?
@@ -258,6 +259,7 @@ summary(df_na$gdp_per_cap)[2]
 df_na$income_cat[df_na$gdp_per_cap>summary(df_na$gdp_per_cap)[2]] <- 1 # Replace step by step
 df_na$income_cat[df_na$gdp_per_cap>summary(df_na$gdp_per_cap)[3]] <- 2
 df_na$income_cat[df_na$gdp_per_cap>summary(df_na$gdp_per_cap)[5]] <- 3
+##Creating four categories through the above code
 
 # Convert into factor
 typeof(df_na$income_cat)
@@ -324,7 +326,7 @@ df_sub
 df_na_g <- arrange(df_na, country, date) # Important, sort rows beforehand!
 df_na_g <- group_by(df_na_g, country) # Group by country
 df_na <- mutate(df_na_g, 
-                income_lag = lag(gdp_per_cap, n = 1)) # Calculate t-1 lag
+                income_lag = lag(gdp_per_cap, n = 1)) # Calculate t-1 lag n=2 would give 2 years prior
 
 # Use piping
 df_na <- 

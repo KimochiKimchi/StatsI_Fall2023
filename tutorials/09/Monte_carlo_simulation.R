@@ -9,7 +9,7 @@
 if(!require(mvtnorm)){
   install.packages("mvtnorm")
   library(mvtnorm)}
-
+library("mvtnorm")
 # Two examples from the book
 # (a.) Omitted variable bias 
 # (b.) Regression with random variables 
@@ -121,7 +121,7 @@ legend(0, 12, # Add legend
 set.seed(843749) # Set the seed for reproducible results
 
 # Create correlation matrix, (r=0)
-rand.vcv <- matrix(0, nrow = 20, ncol = 20) 
+rand.vcv <- matrix(0, nrow = 20, ncol = 20)
 diag(rand.vcv) <- 1 
 
 # Create 20 uncorrelated variables 
@@ -143,12 +143,12 @@ summary(rand.model)
 # at the 0.05 level. This is despite the fact that 
 # we know in the true DGP there is no covariance between 
 # y and x3. However, this is not a surprising result. 
-# By the very definition of a p value, we know that 
+# By the very definition of a p valu  e, we know that 
 # under the null hypothesis such an estimate should 
 # appear about 5% of the time" (p. 346). 
 
 # What we see in this example is a case in which 
-# the stochastic component of the model (noise) 
+# the stochastic(random) component of the model (noise) 
 # happened by chance to produce a statistically 
 # significant estimate. There is nothing systematic 
 # that connects y and x3. Rather, the result is 

@@ -3,7 +3,8 @@
 
 # Set working directory as path where file is located
 getwd()
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) 
+##Puts the file in the folder where the R script is
 getwd()
 
 # Agenda 
@@ -31,12 +32,17 @@ if(!require(ggplot2)){
 
 if(!require(stargazer)){
   install.packages("stargazer")
-  library(stargazer)}
+  library(stargazer)} 
 
 # Load zipped data from url
 if(!require(readr)){
   install.packages("readr")
   library(readr)}
+
+if(!require(haven)){
+  install.packages("haven")
+  library(haven)}
+
 
 # (a.) Data wrangling ----------
 
@@ -53,6 +59,7 @@ wb <- wb(country=c("AF","BRA","ITA","NGA","SWE","UGA"),
 
 # Data formats--wide and long
 # https://www.statology.org/long-vs-wide-data/
+##To get variables in columns rather than rows
 
 # Reshape data from long to wide
 wb_re <- reshape(wb[, c("country","iso3c","date","indicatorID","value")], # df
@@ -110,6 +117,11 @@ write.csv(df, "df_income_mortality.csv")
 
 # How can we merge data on different levels of analysis?
 
+UCDP <- read_csv("https://ucdp.uu.se/downloads/candidateged/GEDEvent_v23_0_9.csv")
+
+morocco <- read_sav("https://www.afrobarometer.org/wp-content/uploads/2023/06/MOR_R9.data_.final_.wtd_release.14Feb23.sav")
+
+view(UCDP)
 # (b.) Data wrangling -------
 
 # Load df
@@ -291,7 +303,7 @@ scatter
 # democracies and autocracies. Add the regression lines. 
 
 # (d.) Regression analysis -----
-
+##Relationship b/w child mortality and GDP per capita
 # Fit model
 model <- lm(mort ~ gdp_per_cap, data=df_na)
 summary(model)
