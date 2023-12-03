@@ -149,18 +149,18 @@ print(change1g)
 # where n is the number of observations
 # and k is the number of predictors (excluding the intercept)
 
-# Therefore, df = 30 - 2 - 1 = 27
+# Therefore, df = 131 - 2 - 1 = 128
 
-# Based on the degrees of freedom and our chosen significance level ($\alpha=0.05$), 
+# Based on the degrees of freedom and our chosen significance level (0.05), 
 # I find the critical t-value
 
 # Based on the t-distribution table, I find the two-tailed critical value to 
-# be 2.05 at 27 degrees of freedom. 
+# be 1.98 at 128 degrees of freedom. 
 # I used the table from this website: 
 #  (https://faculty.washington.edu/heagerty/Books/Biostatistics/TABLES/t-Tables/)
 
 # The absolute value of my test statistic, 2.625 is greater than the 
-# critical value, 2.05. Therefore, we can reject the null hypothesis and 
+# critical value, 1.98. Therefore, we can reject the null hypothesis and 
 # find support for the alternative that there is a discernible linear 
 # relationship between precincts with yard signs and vote share
 
@@ -180,17 +180,17 @@ print(change1g)
         
 # Next, we determine the degrees of freedom,
 # df = n - k - 1
-# df = 76 - 2 - 1
-# df = 73
+# df = 131 - 2 - 1
+# df = 128
       
 # Based on the degrees of freedom and our chosen significance level, 
 # I find the critical t-value
       
 # Based on the t-distribution table, I find the two-tailed critical value to be 
-# 1.99 at 73 degrees of freedom.
+# 1.98 at 128 degrees of freedom.
       
 # The absolute value of my test statistic, 3.2308 is greater than the 
-# critical value, 1.99 at 73 degrees of freedom. 
+# critical value, 1.98 at 128 degrees of freedom. 
 # Therefore, we can reject the null hypothesis and 
 # find support for the alternative that there is a discernible linear 
 # relationship between being next to precincts with yard signs and vote share. 

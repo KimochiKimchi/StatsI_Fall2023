@@ -150,7 +150,6 @@ change_in_prestige <- ((coefficient_income + coefficient_interaction) * 1000)
 # Print the change in predicted prestige
 print(change_in_prestige)
 # We get the same value: 0.8452
-
 \end{verbatim}
 
 \subsection{Answer 1g)}
@@ -199,7 +198,7 @@ Q2a) Use the results from a linear regression to determine whether having these 
 \\
 \noindent My null hypothesis is that there is no discerible linear relationship between having yard signs in a precinct and vote share (after controlling for the effects of other predictor variables), $H_0: \beta_j = 0$ 
 \\
-\noindent My alternative hypothesis is that there is discernible linear relationship between the predictor variable and outcome variable, $H_a: 
+\noindent My alternative hypothesis is that there is a discernible linear relationship between the predictor variable and outcome variable, $H_a: 
 \beta_j \neq 0 $
 \\
 First, I calculate the test statistic using the values in the provided regression results.
@@ -215,18 +214,18 @@ $df = n - k - 1$,
 where n is the number of observations
 and k is the number of predictors (excluding the intercept)
 \\
-Therefore, $df = 30 - 2 - 1$ = 27
+Therefore, $df = 131 - 2 - 1 = 128$
 \\
 Based on the degrees of freedom and our chosen significance level ($\alpha=0.05$), I find the critical t-value
 \\
 Based on the t-distribution table, I find the two-tailed critical value to 
-be 2.05 at 27 degrees of freedom. 
+be 1.98 at 128 degrees of freedom. 
 \\
 I used the table from this website: 
 (https://faculty.washington.edu/heagerty/Books/Biostatistics/TABLES/t-Tables/)
 \\
 The absolute value of my test statistic, 2.625 is greater than the 
-critical value, 2.05. Therefore, we can reject the null hypothesis and 
+critical value, 1.98. Therefore, we can reject the null hypothesis and 
 find support for the alternative that there is a discernible linear 
 relationship between precincts with yard signs and vote share
 \\
@@ -242,30 +241,30 @@ relationship between precincts with yard signs and vote share
 Q2b)Use the results to determine whether being next to precincts with these yard signs affects vote share (e.g., conduct a hypothesis test with $\alpha$ = .05)
 
 Similar Q2a) I conduct the t-test for estimated coefficients
-
+\\
 \noindent My null hypothesis is that there is no discernible linear relationship between having yard signs in the adjacent precinct and vote share (after controlling for the effects of other predictor variables), $H_0: \beta_j = 0$ 
-
+\\
 \noindent My alternative hypothesis is that there is discernible linear relationship between the predictor variable and outcome variable, $H_a: 
 \beta_j \neq 0 $
-
+\\
 Based on the provided regression results, I calculate the test statistic:
 $t = \frac{\hat{\beta_j}}{se_\beta j}$
-
+\\
 $t= \frac{0.042}{0.013}$
 $t = 3.2308$
-
+\\
 Next, we determine the degrees of freedom,
 $df = n - k - 1$
 
-df = 76 - 2 - 1
-df = 73
+df = 131 - 2 - 1
+df = 128
+\\
+\noindent Based on the degrees of freedom and our chosen significance level ($\alpha=0.05$), I find the critical t-value
 
-Based on the degrees of freedom and our chosen significance level ($\alpha=0.05$), I find the critical t-value
-
-Based on the t-distribution table, I find the two-tailed critical value to be 1.99 at 73 degrees of freedom.
+\noindent Based on the t-distribution table, I find the two-tailed critical value to be 1.98 at 128 degrees of freedom.
 
 The absolute value of my test statistic, 3.2308 is greater than the 
-critical value, 1.99 at 73 degrees of freedom. Therefore, we can reject the null hypothesis and find support for the alternative that there is a discernible linear relationship between being next to precincts with yard signs and vote share. 
+critical value, 1.98 at 128 degrees of freedom. Therefore, we can reject the null hypothesis and find support for the alternative that there is a discernible linear relationship between being next to precincts with yard signs and vote share. 
 
 
 \subsection{Answer 2c)}
